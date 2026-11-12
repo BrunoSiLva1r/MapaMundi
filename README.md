@@ -1,15 +1,14 @@
-# Mesa Mundi — versão organizada
+# Mesa Mundi — Landing page + aplicação
 
 ## Estrutura
+- `index.html`: landing page pública.
+- `app.html`: aplicação/protótipo existente; abre na tela de acesso quando não há usuário autenticado.
+- `css/landing.css` e `js/landing.js`: estilos e interações da landing page.
+- `css/app.css` e `js/app.js`: estilos e lógica da aplicação existente.
 
-- `index.html`: estrutura principal da página.
-- `css/styles.css`: estilos, cores, layout e responsividade.
-- `js/app.js`: dados de demonstração, estado, funções, renderização e eventos.
+## Como testar
+Abra `index.html` em um navegador. Os botões **Experimentar agora** e **Entrar** levam para `app.html`, que apresenta a tela de login/cadastro do protótipo.
 
-## Como executar
+Para uma experiência completa, sirva a pasta com um servidor local (por exemplo, Live Server no VS Code).
 
-Abra `index.html` no navegador. Para desenvolvimento, recomenda-se usar a extensão Live Server do VS Code.
-
-## Observações
-
-Esta reorganização separa HTML, CSS e JavaScript em arquivos próprios e preserva a lógica existente. Não foi feita uma reescrita funcional nem uma migração para framework.
+A lógica da aplicação original foi preservada; a landing page foi criada separadamente para não misturar a apresentação pública com o sistema.

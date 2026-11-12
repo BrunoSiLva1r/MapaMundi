@@ -1,20 +1,4 @@
-/*
- * MESA MUNDI — lógica da aplicação
- *
- * Seções:
- * 1. Utilitários e constantes
- * 2. Dados iniciais e estado
- * 3. Componentes e helpers de interface
- * 4. Autenticação
- * 5. Restaurantes e pratos
- * 6. Usuários e perfil
- * 7. Reservas e avaliações
- * 8. Pesquisa e relatórios
- * 9. Renderização e eventos
- *
- * Lógica original preservada nesta reorganização.
- */
-
+// JavaScript original do protótipo Mesa Mundi. A lógica foi preservada.
 const $=s=>document.querySelector(s),e=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const IC={r:'M3 10h18M5 10v10h14V10M4 10l2-6h12l2 6',u:'M16 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2M10 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8M20 21v-2a4 4 0 0 0-3-3.9',c:'M3 5h18v16H3zM3 10h18M8 3v4M16 3v4',s:'M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1L3.2 9.5l6.1-.9z',g:'M4 20V10M10 20V4M16 20v-8M22 20H2',p:'M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8M4 21a8 8 0 0 1 16 0'};
 const ic=k=>`<svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="${IC[k]}"/></svg>`;
