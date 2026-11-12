@@ -2,9 +2,9 @@
 // A escolha feita na landing fica salva e é aplicada no app também.
 (function () {
   const THEMES = {
-    mexico: { primary: '#018D3E', text: '#FDF7E6', detail: '#E71506', surface: '#016F32', label: '🌮 Uma viagem pelo México', image: 'images/mexico.jpg', flag: '🇲🇽', name: 'México' },
-    italia: { primary: '#FA4100', text: '#FFFFFF', detail: '#81F002', surface: '#C83200', label: '🍝 Uma viagem pela Itália', image: 'images/italia.jpg', flag: '🇮🇹', name: 'Itália' },
-    japao:  { primary: '#4B1028', text: '#FEFEFD', detail: '#FE7C00', surface: '#350B1C', label: '🍣 Uma viagem pelo Japão', image: 'images/japao.jpg', flag: '🇯🇵', name: 'Japão' }
+    mexico: { primary: '#018D3E', text: '#FDF7E6', detail: '#E71506', surface: '#016F32', label: '🌮 Uma viagem pelo México', image: 'https://images.unsplash.com/photo-1551504734-5ee1c4a1479b?w=800', flag: '🇲🇽', name: 'México' },
+    italia: { primary: '#FA4100', text: '#FFFFFF', detail: '#81F002', surface: '#C83200', label: '🍝 Uma viagem pela Itália', image: 'https://images.unsplash.com/photo-1473093295043-cdd812d0e601?w=800', flag: '🇮🇹', name: 'Itália' },
+    japao:  { primary: '#4B1028', text: '#FEFEFD', detail: '#FE7C00', surface: '#350B1C', label: '🍣 Uma viagem pelo Japão', image: 'https://images.unsplash.com/photo-1579871494447-9811cf80d66c?w=800', flag: '🇯🇵', name: 'Japão' }
   };
   const KEY = 'mesamundi-tema';
 
@@ -35,5 +35,5 @@
   }
 
   apply(current(), false);
-  window.MesaTheme = { themes: THEMES, apply, current };
+  window.MesaTheme = { themes: THEMES, apply, current, hasSaved: () => Boolean(THEMES[saved()]) };
 })();

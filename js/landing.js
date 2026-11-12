@@ -1,5 +1,5 @@
 // Interações da landing page: troca de tema ao clicar nos banners de culinária.
-// As paletas ficam em js/theme.js e a escolha é lembrada no app.
+// As paletas ficam em js/theme.js.
 document.getElementById('year').textContent = new Date().getFullYear();
 
 const cards = document.querySelectorAll('.culture-card');
@@ -38,5 +38,5 @@ cards.forEach((card) => {
   });
 });
 
-// Mostra o tema escolhido na última visita
-showTheme(MesaTheme.current(), false);
+// Se a pessoa já escolheu uma culinária antes, mostra ela
+if (MesaTheme.hasSaved()) showTheme(MesaTheme.current(), false);
