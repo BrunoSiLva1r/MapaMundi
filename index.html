@@ -1,71 +1,123 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#fff8f4">
-  <meta name="description" content="Descubra restaurantes, sabores e experiências gastronômicas de diferentes partes do mundo com o Mesa Mundi.">
-  <title>Mesa Mundi | O mundo cabe à sua mesa</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#018D3E">
+  <meta name="description" content="Mesa Mundi — Restaurantes e sabores de todas as nacionalidades.">
+
+  <title>Mesa Mundi | Sabores do Mundo</title>
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/landing.css">
+  <script src="js/theme.js"></script>
 </head>
+
 <body>
-  <header class="site-header">
-    <a class="brand" href="#inicio" aria-label="Mesa Mundi, início"><span class="brand-mark">✳</span><span>Mesa <b>Mundi</b></span></a>
-    <button class="menu-toggle" aria-label="Abrir menu" aria-expanded="false">☰</button>
-    <nav class="nav-links" aria-label="Navegação principal">
-      <a href="#como-funciona">Como funciona</a>
-      <a href="#descobrir">Descobrir sabores</a>
-      <a href="#sobre">Sobre</a>
+
+  <header>
+    <a href="#inicio" class="logo">mesa<span>mundi.</span></a>
+
+    <nav>
+      <a href="#inicio">Início</a>
+      <a href="#culturas">Culinárias</a>
+      <a href="#sobre">Sobre nós</a>
+      <a href="app.html">Entrar</a>
     </nav>
-    <div class="header-actions"><a class="login-link" href="app.html">Entrar</a><a class="button button-small" href="app.html">Experimentar agora <span>↗</span></a></div>
+
+    <a href="app.html" class="header-button">Experimentar agora ↗</a>
   </header>
 
   <main>
+
     <section class="hero" id="inicio">
-      <div class="hero-copy">
-        <div class="eyebrow"><span></span> UMA VIAGEM DE SABORES COMEÇA AQUI</div>
-        <h1>O mundo cabe<br>à sua <em>mesa.</em></h1>
-        <p class="hero-description">Descubra restaurantes, conheça culturas e encontre seu próximo prato favorito. Uma experiência gastronômica que conecta você a sabores do mundo inteiro.</p>
-        <div class="hero-actions"><a class="button" href="app.html">Experimentar agora <span>↗</span></a><a class="text-link" href="#como-funciona">Conheça a plataforma <span>↓</span></a></div>
-        <div class="hero-proof"><div class="avatar-stack"><span>🥘</span><span>🍜</span><span>🥙</span><span>🍣</span></div><div><strong>Uma mesa, muitas culturas.</strong><small>Explore novos sabores sem sair da sua cidade.</small></div></div>
-      </div>
-      <div class="hero-art" aria-label="Composição ilustrativa de pratos de diferentes culturas">
-        <div class="art-glow"></div><div class="orbit orbit-one"></div><div class="orbit orbit-two"></div>
-        <div class="food-card food-main"><div class="food-emoji">🍜</div><div class="food-caption"><span>DESTAQUE DA VIAGEM</span><strong>Sabores asiáticos</strong><small>Uma descoberta a cada garfada</small></div></div>
-        <div class="food-card food-float food-left"><span>🥙</span><div><b>Oriente Médio</b><small>Tradição e afeto</small></div></div>
-        <div class="food-card food-float food-right"><span>🍕</span><div><b>Itália</b><small>Clássicos irresistíveis</small></div></div>
-        <div class="mini-stamp">WORLD<br><b>FOOD</b><br>LOVERS</div>
-        <div class="hero-note"><span>✦</span> Descubra o extraordinário no cotidiano.</div>
-      </div>
-      <div class="hero-bottom"><span>01 / 03</span><div class="bottom-line"></div><span>EXPLORE • DESCUBRA • SABOREIE</span></div>
-    </section>
+      <div class="hero-content">
+        <div class="eyebrow">Uma viagem em cada refeição</div>
 
-    <section class="intro section" id="sobre">
-      <div class="section-kicker">MAIS QUE UM APLICATIVO</div>
-      <div class="intro-grid"><h2>Seu próximo destino<br>pode estar <em>no prato.</em></h2><p>O Mesa Mundi aproxima pessoas e restaurantes por meio da gastronomia. Encontre lugares especiais, explore culinárias de diferentes nacionalidades e viva novas experiências — tudo em um só lugar.</p></div>
-    </section>
+        <h1>O mundo inteiro<br>cabe na sua <span>mesa.</span></h1>
 
-    <section class="discover section" id="descobrir">
-      <div class="section-heading"><div><div class="section-kicker">UM MUNDO DE POSSIBILIDADES</div><h2>Qual sabor vai te<br><em>surpreender hoje?</em></h2></div><a class="text-link" href="app.html">Explorar plataforma <span>↗</span></a></div>
-      <div class="cuisine-grid">
-        <article class="cuisine-card cuisine-asia"><div class="cuisine-icon">🍣</div><div><span>01 — ÁSIA</span><h3>Equilíbrio e criatividade</h3><p>Uma mistura de texturas, aromas e tradições.</p></div><b class="card-arrow">↗</b></article>
-        <article class="cuisine-card cuisine-italy"><div class="cuisine-icon">🍝</div><div><span>02 — ITÁLIA</span><h3>Tradição em cada receita</h3><p>Receitas que transformam simplicidade em arte.</p></div><b class="card-arrow">↗</b></article>
-        <article class="cuisine-card cuisine-arab"><div class="cuisine-icon">🥙</div><div><span>03 — ORIENTE MÉDIO</span><h3>Histórias para compartilhar</h3><p>Temperos marcantes e hospitalidade à mesa.</p></div><b class="card-arrow">↗</b></article>
+        <p class="hero-description">
+          Descubra culturas, explore novos sabores e encontre
+          restaurantes internacionais pertinho de você.
+          Sua próxima experiência gastronômica começa aqui.
+        </p>
+
+        <div class="hero-actions">
+          <a href="#culturas" class="primary-button">Explorar sabores →</a>
+          <a href="#sobre" class="secondary-button">Conheça o Mesa Mundi</a>
+        </div>
+      </div>
+
+      <div class="hero-decoration">
+        <img id="hero-image" src="images/mexico.jpg" alt="Comida típica do México">
+        <div class="floating-label" id="hero-label">🌎 Sabores sem fronteiras</div>
       </div>
     </section>
 
-    <section class="how section" id="como-funciona">
-      <div class="how-heading"><div class="section-kicker">SIMPLES ASSIM</div><h2>Uma experiência<br><em>em três passos.</em></h2><p>Da curiosidade à próxima reserva, tudo começa com uma descoberta.</p></div>
-      <div class="steps"><article class="step"><span class="step-number">01</span><div class="step-icon">⌕</div><h3>Explore</h3><p>Encontre restaurantes e descubra culinárias de diferentes partes do mundo.</p></article><article class="step"><span class="step-number">02</span><div class="step-icon">♡</div><h3>Escolha</h3><p>Conheça os detalhes, veja avaliações e encontre o lugar ideal para você.</p></article><article class="step"><span class="step-number">03</span><div class="step-icon">✦</div><h3>Experimente</h3><p>Faça sua reserva e transforme uma refeição em uma nova lembrança.</p></article></div>
+    <section class="cultures" id="culturas">
+      <div class="section-heading">
+        <small>Explore o mundo</small>
+        <h2>Qual será seu próximo destino?</h2>
+      </div>
+
+      <div class="banner-grid">
+        <button class="culture-card active" data-theme="mexico" aria-pressed="true" type="button">
+          <img src="images/mexico.jpg" alt="Tacos mexicanos" loading="lazy">
+          <span class="card-arrow">↗</span>
+          <div class="card-content">
+            <span class="card-tag">AMÉRICA DO NORTE</span>
+            <h3>México 🇲🇽</h3>
+            <p>Temperos intensos, cores vibrantes e sabores inesquecíveis.</p>
+          </div>
+        </button>
+
+        <button class="culture-card" data-theme="italia" aria-pressed="false" type="button">
+          <img src="images/italia.jpg" alt="Massa italiana" loading="lazy">
+          <span class="card-arrow">↗</span>
+          <div class="card-content">
+            <span class="card-tag">EUROPA</span>
+            <h3>Itália 🇮🇹</h3>
+            <p>Tradição, massas artesanais e o verdadeiro sabor italiano.</p>
+          </div>
+        </button>
+
+        <button class="culture-card" data-theme="japao" aria-pressed="false" type="button">
+          <img src="images/japao.jpg" alt="Sushi japonês" loading="lazy">
+          <span class="card-arrow">↗</span>
+          <div class="card-content">
+            <span class="card-tag">ÁSIA</span>
+            <h3>Japão 🇯🇵</h3>
+            <p>Equilíbrio, delicadeza e uma experiência cheia de tradição.</p>
+          </div>
+        </button>
+      </div>
     </section>
 
-    <section class="cta-section"><div class="cta-decoration">✳</div><div class="section-kicker">SUA PRÓXIMA DESCOBERTA ESTÁ ESPERANDO</div><h2>Pronto para provar<br>o mundo?</h2><p>Entre no Mesa Mundi e comece sua próxima jornada gastronômica.</p><a class="button button-light" href="app.html">Experimentar agora <span>↗</span></a></section>
+    <section class="experience" id="sobre">
+      <div>
+        <div class="eyebrow">Muito além de comer</div>
+        <h2>Restaurantes e sabores<br>de todas as nacionalidades.</h2>
+        <p>
+          O Mesa Mundi conecta você a restaurantes de diferentes
+          culturas. Descubra lugares, conheça novas gastronomias
+          e encontre sua próxima experiência internacional.
+        </p>
+        <br>
+        <a href="app.html" class="primary-button">Começar minha experiência →</a>
+      </div>
+      <div class="experience-icon">🌍</div>
+    </section>
+
   </main>
 
-  <footer class="footer"><a class="brand" href="#inicio"><span class="brand-mark">✳</span><span>Mesa <b>Mundi</b></span></a><span>Conectando culturas, uma refeição de cada vez.</span><span>© <span id="year"></span> Mesa Mundi</span></footer>
+  <footer>
+    <div class="footer-brand">mesa<span style="color:var(--detail)">mundi.</span></div>
+    <p>© <span id="year">2026</span> Mesa Mundi. Todos os direitos reservados.</p>
+    <p>Feito para quem tem fome de conhecer o mundo.</p>
+  </footer>
+
   <script src="js/landing.js"></script>
 </body>
 </html>
