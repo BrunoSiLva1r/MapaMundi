@@ -1,504 +1,452 @@
+/* =========================================================
+   Mesa Mundi — landing page
+   Conceito: o mapa-múndi de pontos com a rota de Belo Horizonte
+   até a terra da culinária. Ele é o único elemento ousado;
+   o resto é texto calmo, alinhado à esquerda, sobre a cor do tema.
+
+   Cores: vêm do tema da culinária (js/theme.js)
+     --primary  fundo da página
+     --surface  fundo de blocos (um tom abaixo)
+     --text     texto e pontos do mapa
+     --detail   rota, destino e botão principal
+   Tipos: Manrope (títulos, números, selos) / DM Sans (texto)
+   Escala: 14 · 16 · 20 · 26 · 40 · 64 (razão ~1.25 a 1.6)
+   ========================================================= */
+
 :root {
   --primary: #018D3E;
   --text: #FDF7E6;
   --detail: #E71506;
   --surface: #016F32;
-  --card: rgba(255,255,255,.10);
-  --shadow: rgba(0,0,0,.15);
+
+  --text-suave: color-mix(in srgb, var(--text) 78%, transparent);
+  --linha: color-mix(in srgb, var(--text) 22%, transparent);
+
+  --titulo: 'Manrope', 'DM Sans', system-ui, sans-serif;
+  --corpo: 'DM Sans', system-ui, sans-serif;
+
+  --largura: 1180px;
 }
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+* { margin: 0; padding: 0; box-sizing: border-box; }
 
-html {
-  scroll-behavior: smooth;
-}
+html { scroll-behavior: smooth; }
 
 body {
   background: var(--primary);
   color: var(--text);
-  font-family: 'DM Sans', sans-serif;
+  font: 16px/1.6 var(--corpo);
   overflow-x: hidden;
   transition: background .7s ease, color .7s ease;
 }
 
-button, a {
-  font: inherit;
+a { color: inherit; text-decoration: none; }
+button { font: inherit; color: inherit; cursor: pointer; }
+img { max-width: 100%; display: block; }
+
+h1, h2, h3 { font-family: var(--titulo); text-wrap: balance; }
+
+:focus-visible {
+  outline: 2px solid var(--text);
+  outline-offset: 3px;
+  border-radius: 6px;
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
+main > section,
+.topo,
+.rodape {
+  width: min(var(--largura), 100% - 2 * max(16px, 3.5vw));
+  margin-inline: auto;
 }
 
-button {
-  cursor: pointer;
-}
+/* ---------- Botões ---------- */
 
-/* HEADER */
-
-header {
-  width: 100%;
-  padding: 24px 7%;
-  display: flex;
-  justify-content: space-between;
+.botao {
+  display: inline-flex;
   align-items: center;
+  justify-content: center;
+  min-height: 46px;
+  padding: 0 22px;
+  border-radius: 999px;
+  font: 700 14px var(--titulo);
+  border: 1.5px solid transparent;
+  transition: transform .2s ease, background .5s ease, color .5s ease, border-color .5s ease;
+  white-space: nowrap;
+}
+.botao:hover { transform: translateY(-2px); }
+.botao:active { transform: translateY(0); }
+
+.botao-destaque { background: var(--detail); color: #fff; }
+.botao-claro { background: var(--text); color: var(--primary); }
+.botao-contorno { border-color: var(--linha); color: var(--text); }
+.botao-contorno:hover { border-color: var(--text); }
+
+/* Itália: o verde-limão pede texto escuro */
+[data-culture="italia"] .botao-destaque { color: #2A1200; }
+
+/* ---------- Topo ---------- */
+
+.topo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   gap: 24px;
-  position: relative;
-  z-index: 10;
+  padding-block: 22px;
 }
 
 .logo {
-  font-size: 27px;
-  font-weight: 800;
-  letter-spacing: -1.5px;
+  font: 800 26px/1 var(--titulo);
+  letter-spacing: -1.2px;
 }
+.logo span { color: var(--detail); transition: color .7s ease; }
 
-.logo span {
-  color: var(--detail);
-  transition: color .7s ease;
+.menu { display: flex; gap: 32px; }
+.menu a,
+.link-entrar {
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--text-suave);
+  transition: color .2s;
 }
+.menu a:hover,
+.link-entrar:hover { color: var(--text); }
 
-nav {
-  display: flex;
-  gap: 35px;
-  align-items: center;
-}
+.topo-acoes { display: flex; align-items: center; gap: 22px; }
 
-nav a {
-  font-size: 14px;
-  font-weight: 600;
-  opacity: .85;
-  transition: opacity .3s;
-}
-
-nav a:hover {
-  opacity: 1;
-}
-
-.header-button {
-  background: var(--text);
-  color: var(--primary);
-  padding: 12px 23px;
-  border-radius: 50px;
-  font-size: 13px;
-  font-weight: 800;
-  transition: transform .3s, background .5s, color .5s;
-}
-
-.header-button:hover {
-  transform: translateY(-3px);
-}
-
-/* HERO */
+/* ---------- Hero ---------- */
 
 .hero {
-  padding: 65px 7% 40px;
-  min-height: 460px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  display: grid;
   gap: 40px;
+  padding-block: 48px 72px;
 }
 
-.hero-content {
-  max-width: 650px;
-  animation: fadeUp .8s ease both;
+.hero-texto {
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
+  align-items: end;
+  gap: 22px 56px;
 }
-
-.eyebrow {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  font-size: 12px;
-  text-transform: uppercase;
-  letter-spacing: 3px;
-  font-weight: 800;
-  margin-bottom: 25px;
-}
-
-.eyebrow::before {
-  content: "";
-  width: 30px;
-  height: 3px;
-  border-radius: 5px;
-  background: var(--detail);
-}
+.hero-texto h1 { grid-row: span 2; }
+.hero-texto .hero-acoes { align-self: start; }
 
 h1 {
-  font-family: 'Manrope', 'DM Sans', sans-serif;
-  font-size: clamp(42px, 5.2vw, 72px);
-  line-height: 1.04;
-  letter-spacing: -2.5px;
-  margin-bottom: 25px;
-}
-
-h1 span {
-  color: var(--detail);
-  transition: color .7s ease;
-}
-
-.hero-description {
-  max-width: 480px;
-  font-size: 16px;
-  line-height: 1.8;
-  opacity: .85;
-  margin-bottom: 32px;
-}
-
-.hero-actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 14px;
-}
-
-.primary-button,
-.secondary-button {
-  padding: 15px 25px;
-  border-radius: 50px;
-  font-size: 13px;
+  font-size: clamp(40px, 5.6vw, 72px);
   font-weight: 800;
-  transition: all .3s ease;
+  line-height: 1.02;
+  letter-spacing: -0.035em;
 }
 
-.primary-button {
-  background: var(--detail);
-  color: white;
-  border: 1px solid var(--detail);
+.hero-descricao {
+  font-size: 18px;
+  color: var(--text-suave);
+  max-width: 50ch;
 }
 
-.primary-button:hover {
-  transform: translateY(-4px);
-  filter: brightness(1.1);
-}
+.hero-acoes { display: flex; flex-wrap: wrap; gap: 12px; padding-top: 4px; }
 
-.secondary-button {
-  border: 1px solid rgba(255,255,255,.45);
-  color: var(--text);
-}
-
-.secondary-button:hover {
-  background: var(--text);
-  color: var(--primary);
-}
-
-.hero-decoration {
-  width: 330px;
-  height: 330px;
-  flex-shrink: 0;
-  border-radius: 50%;
+/* O mapa */
+.mapa {
   position: relative;
-  display: grid;
-  place-items: center;
-  background: var(--card);
-  animation: float 5s ease-in-out infinite;
+  border-radius: 28px;
+  background: var(--surface);
+  padding: clamp(18px, 3vw, 36px);
+  padding-bottom: clamp(96px, 12vw, 120px);
+  transition: background .7s ease;
 }
 
-.hero-decoration img {
-  width: 88%;
-  height: 88%;
-  object-fit: cover;
-  border-radius: 50%;
-  border: 8px solid rgba(255,255,255,.12);
-  opacity: 1;
-  transition: opacity .3s ease;
+#mapa-canvas {
+  display: block;
+  width: 100%;
+  aspect-ratio: 120 / 47;
 }
 
-.floating-label {
+.rota {
   position: absolute;
-  bottom: 20px;
-  left: -25px;
-  background: var(--text);
-  color: var(--primary);
-  padding: 13px 20px;
-  border-radius: 15px;
-  font-size: 12px;
+  left: clamp(18px, 3vw, 36px);
+  bottom: clamp(20px, 2.6vw, 32px);
+  display: grid;
+  gap: 2px;
+  max-width: min(440px, 60%);
+}
+
+.rota-trecho { font-size: 15px; color: var(--text-suave); }
+.rota-trecho strong { color: var(--text); font-weight: 600; }
+
+.rota-km {
+  font: 800 clamp(30px, 4vw, 44px)/1.05 var(--titulo);
+  letter-spacing: -0.03em;
+  font-variant-numeric: tabular-nums;
+}
+
+.rota-nota { font-size: 15px; color: var(--text-suave); }
+
+.destinos {
+  position: absolute;
+  right: clamp(18px, 3vw, 36px);
+  bottom: clamp(24px, 3vw, 36px);
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.destino {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px 6px 6px;
+  border-radius: 999px;
+  border: 1.5px solid var(--linha);
+  background: transparent;
+  font-size: 14px;
+  font-weight: 600;
+  transition: background .3s, color .3s, border-color .3s;
+}
+.destino:hover { border-color: var(--text); }
+.destino[aria-pressed="true"] { background: var(--text); color: var(--primary); border-color: var(--text); }
+.destino[aria-pressed="true"] .selo-mini { border-color: currentColor; }
+
+/* Selo de passaporte pequeno (código do país) */
+.selo-mini {
+  display: inline-grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 1.5px dashed var(--linha);
+  font: 800 10.5px var(--titulo);
+  letter-spacing: .04em;
+  flex-shrink: 0;
+}
+
+/* ---------- Cabeçalho das seções ---------- */
+
+.secao-cabeca {
+  display: grid;
+  gap: 8px;
+  margin-bottom: 32px;
+  max-width: 640px;
+}
+
+h2 {
+  font-size: clamp(28px, 3.4vw, 40px);
   font-weight: 800;
-  box-shadow: 0 10px 30px var(--shadow);
-  transition: background .7s, color .7s;
+  line-height: 1.1;
+  letter-spacing: -0.025em;
 }
 
-/* CULTURE SELECTOR */
+.secao-cabeca p { color: var(--text-suave); }
 
-.cultures {
-  padding: 55px 7% 90px;
-}
+/* ---------- Culinárias ---------- */
 
-.section-heading {
-  margin-bottom: 35px;
-}
+.culinarias { padding-block: 56px 88px; }
 
-.section-heading small {
-  font-size: 11px;
-  font-weight: 800;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  opacity: .75;
-}
-
-.section-heading h2 {
-  font-family: 'Manrope', 'DM Sans', sans-serif;
-  font-size: clamp(30px, 4vw, 46px);
-  margin-top: 10px;
-}
-
-.banner-grid {
+.cartoes {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 22px;
+  gap: 20px;
 }
 
-.culture-card {
-  min-height: 390px;
+.cartao {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  min-height: 400px;
+  padding: 0;
   border: 2px solid transparent;
   border-radius: 24px;
-  position: relative;
-  overflow: hidden;
-  isolation: isolate;
-  cursor: pointer;
-  transition: transform .4s ease, border .4s ease, box-shadow .4s ease;
   background: var(--surface);
+  color: #fff;
   text-align: left;
-  color: white;
-  padding: 0;
+  display: flex;
+  align-items: flex-end;
+  transition: border-color .3s ease, transform .3s ease;
 }
+.cartao:hover { transform: translateY(-4px); }
+.cartao[aria-pressed="true"] { border-color: var(--text); }
 
-.culture-card:hover {
-  transform: translateY(-9px);
-}
-
-.culture-card.active {
-  border-color: var(--text);
-  box-shadow: 0 15px 45px var(--shadow);
-  transform: translateY(-7px);
-}
-
-.culture-card img {
+.cartao img {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
   z-index: -2;
-  transition: transform .8s ease;
 }
-
-.culture-card:hover img {
-  transform: scale(1.08);
-}
-
-.culture-card::after {
+.cartao::after {
   content: "";
   position: absolute;
   inset: 0;
   z-index: -1;
-  background: linear-gradient(
-    to top,
-    rgba(0,0,0,.88),
-    rgba(0,0,0,.05) 85%
-  );
+  background: linear-gradient(to top, rgba(0, 0, 0, .82), rgba(0, 0, 0, 0) 62%);
 }
 
-.card-content {
+.cartao-texto { display: grid; gap: 4px; padding: 26px; }
+.cartao-regiao { font-size: 13px; opacity: .8; }
+.cartao-nome { font: 800 30px/1.1 var(--titulo); letter-spacing: -0.02em; }
+.cartao-desc { font-size: 14px; opacity: .88; max-width: 34ch; }
+
+/* Carimbo de passaporte */
+.selo {
   position: absolute;
-  bottom: 28px;
-  left: 25px;
-  right: 25px;
+  top: 20px;
+  right: 20px;
+  width: 78px;
+  height: 78px;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, .85);
+  outline: 1.5px dashed rgba(255, 255, 255, .6);
+  outline-offset: -8px;
+  display: grid;
+  place-content: center;
+  text-align: center;
+  rotate: -12deg;
+  color: #fff;
+  backdrop-filter: blur(3px);
+  background: rgba(0, 0, 0, .18);
+}
+.selo b { font: 800 20px/1 var(--titulo); letter-spacing: .04em; }
+.selo small { font-size: 9.5px; font-weight: 600; margin-top: 3px; font-variant-numeric: tabular-nums; }
+
+/* ---------- Como funciona (sequência real) ---------- */
+
+.como { padding-block: 32px 88px; }
+
+.paradas {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+  position: relative;
 }
 
-.card-tag {
-  display: inline-block;
-  background: rgba(255,255,255,.2);
-  backdrop-filter: blur(10px);
-  padding: 7px 12px;
-  border-radius: 30px;
-  font-size: 10px;
-  font-weight: 800;
-  letter-spacing: 1px;
-  margin-bottom: 14px;
-}
-
-.card-content h3 {
-  font-family: 'Manrope', 'DM Sans', sans-serif;
-  font-size: 32px;
-  margin-bottom: 8px;
-}
-
-.card-content p {
-  font-size: 12px;
-  opacity: .85;
-  line-height: 1.6;
-}
-
-.card-arrow {
+/* a linha pontilhada que liga as paradas, como a rota do mapa */
+.paradas::before {
+  content: "";
   position: absolute;
-  right: 24px;
-  top: 24px;
-  width: 42px;
-  height: 42px;
+  top: 21px;
+  left: 22px;
+  right: 22px;
+  border-top: 2px dotted var(--linha);
+}
+
+.paradas li { position: relative; display: grid; gap: 10px; align-content: start; }
+
+.parada-num {
+  width: 44px;
+  height: 44px;
   border-radius: 50%;
   display: grid;
   place-items: center;
-  background: rgba(255,255,255,.2);
-  backdrop-filter: blur(10px);
-  font-size: 20px;
-}
-
-/* EXPERIENCE */
-
-.experience {
-  margin: 0 7% 90px;
-  padding: 55px;
-  border-radius: 28px;
-  background: var(--surface);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 35px;
+  background: var(--primary);
+  border: 2px solid var(--text);
+  font: 800 17px var(--titulo);
   transition: background .7s ease;
 }
+.paradas li:last-child .parada-num { background: var(--detail); border-color: var(--detail); color: #fff; }
+[data-culture="italia"] .paradas li:last-child .parada-num { color: #2A1200; }
 
-.experience h2 {
-  font-family: 'Manrope', 'DM Sans', sans-serif;
-  font-size: clamp(30px, 4vw, 44px);
-  margin-bottom: 15px;
-}
+.paradas h3 { font-size: 20px; font-weight: 700; letter-spacing: -0.01em; margin-top: 6px; }
+.paradas p { color: var(--text-suave); max-width: 34ch; }
 
-.experience p {
-  opacity: .8;
-  line-height: 1.8;
-  max-width: 550px;
-  font-size: 14px;
-}
+/* ---------- Países ---------- */
 
-.experience-icon {
-  font-size: 75px;
-  flex-shrink: 0;
-}
+.paises { padding-block: 32px 88px; }
 
-/* FOOTER */
+.lista-paises { list-style: none; border-top: 1px solid var(--linha); }
 
-footer {
-  padding: 35px 7%;
-  border-top: 1px solid rgba(255,255,255,.2);
-  display: flex;
-  justify-content: space-between;
+.lista-paises li {
+  display: grid;
+  grid-template-columns: auto minmax(0, 260px) 1fr auto;
   align-items: center;
-  gap: 20px;
+  gap: 18px;
+  padding: 14px 4px;
+  border-bottom: 1px solid var(--linha);
+}
+
+.pais-nome { font: 700 18px var(--titulo); }
+.pais-cidade { color: var(--text-suave); }
+.pais-km {
+  font: 700 16px var(--titulo);
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+}
+
+/* ---------- Para restaurantes ---------- */
+
+.restaurantes {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+  margin-bottom: 88px;
+  padding: clamp(28px, 4vw, 52px);
+  border-radius: 28px;
+  background: var(--surface);
+  transition: background .7s ease;
+}
+.restaurantes > div { display: grid; gap: 12px; max-width: 620px; }
+.restaurantes p { color: var(--text-suave); }
+
+/* ---------- Rodapé ---------- */
+
+.rodape {
+  display: flex;
   flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px 24px;
+  padding-block: 32px 40px;
+  border-top: 1px solid var(--linha);
+  font-size: 14px;
+  color: var(--text-suave);
+}
+.rodape .logo { font-size: 20px; color: var(--text); }
+
+/* ---------- Telas menores ---------- */
+
+@media (max-width: 960px) {
+  .menu { display: none; }
+  .hero-texto { grid-template-columns: 1fr; }
+  .hero-texto h1 { grid-row: auto; max-width: 14ch; }
+  .cartoes { grid-template-columns: 1fr 1fr; }
+  .cartao:last-child { grid-column: span 2; min-height: 320px; }
+
+  .mapa { padding-bottom: 24px; }
+  .rota, .destinos { position: static; max-width: none; }
+  .rota { margin-top: 16px; }
+  .destinos { justify-content: flex-start; margin-top: 18px; }
 }
 
-footer p {
-  font-size: 12px;
-  opacity: .7;
-}
+@media (max-width: 640px) {
+  .link-entrar { display: none; }
+  .topo .botao { min-height: 40px; padding: 0 16px; font-size: 13px; }
+  .hero { padding-block: 24px 56px; gap: 32px; }
+  .hero-descricao { font-size: 16px; }
+  .mapa { border-radius: 20px; }
 
-.footer-brand {
-  font-size: 20px;
-  font-weight: 800;
-}
+  .cartoes { grid-template-columns: 1fr; }
+  .cartao, .cartao:last-child { grid-column: auto; min-height: 320px; }
 
-/* ANIMATIONS */
+  .paradas { grid-template-columns: 1fr; gap: 26px; }
+  .paradas::before { top: 22px; bottom: 22px; left: 21px; right: auto; border-top: 0; border-left: 2px dotted var(--linha); }
+  .paradas li { grid-template-columns: 44px 1fr; column-gap: 16px; }
+  .paradas li .parada-num { grid-row: span 2; }
+  .paradas h3 { margin-top: 8px; }
 
-@keyframes fadeUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
+  .lista-paises li { grid-template-columns: auto 1fr auto; gap: 4px 14px; }
+  .pais-cidade { grid-column: 2; grid-row: 2; font-size: 14px; }
+  .pais-km { grid-column: 3; grid-row: 1 / span 2; }
+  .lista-paises .selo-mini { grid-row: 1 / span 2; }
 
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes float {
-  0%, 100% {
-    transform: translateY(0);
-  }
-
-  50% {
-    transform: translateY(-15px);
-  }
-}
-
-/* RESPONSIVE */
-
-@media (max-width: 900px) {
-  .hero {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .hero-decoration {
-    width: 260px;
-    height: 260px;
-    align-self: center;
-  }
-
-  .banner-grid {
-    grid-template-columns: 1fr 1fr;
-  }
-
-  .culture-card:last-child {
-    grid-column: span 2;
-  }
-}
-
-@media (max-width: 600px) {
-  header {
-    padding: 20px 6%;
-  }
-
-  nav {
-    display: none;
-  }
-
-  .hero {
-    padding: 50px 6% 40px;
-  }
-
-  h1 {
-    letter-spacing: -1.5px;
-  }
-
-  .cultures {
-    padding: 45px 6% 65px;
-  }
-
-  .banner-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .culture-card,
-  .culture-card:last-child {
-    grid-column: auto;
-    min-height: 340px;
-  }
-
-  .experience {
-    margin: 0 6% 65px;
-    padding: 30px;
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .experience-icon {
-    font-size: 50px;
-  }
-
-  footer {
-    padding: 30px 6%;
-  }
+  .restaurantes { flex-direction: column; align-items: flex-start; }
 }
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
-    animation-duration: .01ms !important;
     transition-duration: .01ms !important;
+    animation-duration: .01ms !important;
     scroll-behavior: auto !important;
   }
 }

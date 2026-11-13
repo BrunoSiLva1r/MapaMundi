@@ -4,120 +4,170 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#018D3E">
-  <meta name="description" content="Mesa Mundi — Restaurantes e sabores de todas as nacionalidades.">
+  <meta name="description" content="Mesa Mundi: restaurantes de comida estrangeira em Belo Horizonte e região, reunidos num só lugar.">
 
-  <title>Mesa Mundi | Sabores do Mundo</title>
+  <title>Mesa Mundi | O mundo inteiro cabe na sua mesa</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/landing.css?v=20261112c">
-  <script src="js/theme.js?v=20261112c"></script>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/landing.css?v=20261112d">
+  <script src="js/theme.js?v=20261112d"></script>
 </head>
 
 <body>
 
-  <header>
-    <a href="#inicio" class="logo">mesa<span>mundi.</span></a>
+  <header class="topo">
+    <a href="#inicio" class="logo" aria-label="Mesa Mundi, início">mesa<span>mundi.</span></a>
 
-    <nav>
-      <a href="#inicio">Início</a>
-      <a href="#culturas">Culinárias</a>
-      <a href="#sobre">Sobre nós</a>
-      <a href="app.html">Entrar</a>
+    <nav class="menu" aria-label="Navegação principal">
+      <a href="#culinarias">Culinárias</a>
+      <a href="#como-funciona">Como funciona</a>
+      <a href="#restaurantes">Para restaurantes</a>
     </nav>
 
-    <a href="app.html" class="header-button">Experimentar agora ↗</a>
+    <div class="topo-acoes">
+      <a href="app.html" class="link-entrar">Entrar</a>
+      <a href="app.html" class="botao botao-claro">Experimentar agora</a>
+    </div>
   </header>
 
   <main>
 
+    <!-- HERO: o mapa com a rota de BH até a culinária escolhida -->
     <section class="hero" id="inicio">
-      <div class="hero-content">
-        <div class="eyebrow">Uma viagem em cada refeição</div>
-
-        <h1>O mundo inteiro<br>cabe na sua <span>mesa.</span></h1>
-
-        <p class="hero-description">
-          Descubra culturas, explore novos sabores e encontre
-          restaurantes internacionais pertinho de você.
-          Sua próxima experiência gastronômica começa aqui.
+      <div class="hero-texto">
+        <h1>O mundo inteiro cabe na sua mesa.</h1>
+        <p class="hero-descricao">
+          Restaurantes de comida estrangeira em Belo Horizonte e região, reunidos num só lugar.
+          Escolha um país e descubra onde provar.
         </p>
-
-        <div class="hero-actions">
-          <a href="#culturas" class="primary-button">Explorar sabores →</a>
-          <a href="#sobre" class="secondary-button">Conheça o Mesa Mundi</a>
+        <div class="hero-acoes">
+          <a href="app.html" class="botao botao-destaque">Experimentar agora</a>
+          <a href="#culinarias" class="botao botao-contorno">Ver culinárias</a>
         </div>
       </div>
 
-      <div class="hero-decoration">
-        <img id="hero-image" src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=800" alt="Prato de comida internacional">
-        <div class="floating-label" id="hero-label">🌎 Sabores sem fronteiras</div>
-      </div>
+      <figure class="mapa" aria-labelledby="rota-legenda">
+        <canvas id="mapa-canvas" aria-hidden="true"></canvas>
+
+        <figcaption class="rota" id="rota-legenda" aria-live="polite">
+          <span class="rota-trecho"><span id="rota-origem">Belo Horizonte</span> até <strong id="rota-destino">Cidade do México</strong></span>
+          <span class="rota-km"><span id="rota-km">7.436</span> km</span>
+          <span class="rota-nota" id="rota-nota">Os tacos estão bem mais perto.</span>
+        </figcaption>
+
+        <div class="destinos" role="group" aria-label="Escolha a culinária">
+          <button type="button" class="destino" data-theme="mexico" aria-pressed="true"><span class="selo-mini">MX</span>México</button>
+          <button type="button" class="destino" data-theme="italia" aria-pressed="false"><span class="selo-mini">IT</span>Itália</button>
+          <button type="button" class="destino" data-theme="japao" aria-pressed="false"><span class="selo-mini">JP</span>Japão</button>
+        </div>
+      </figure>
     </section>
 
-    <section class="cultures" id="culturas">
-      <div class="section-heading">
-        <small>Explore o mundo</small>
+    <!-- CULINÁRIAS -->
+    <section class="culinarias" id="culinarias">
+      <div class="secao-cabeca">
         <h2>Qual será seu próximo destino?</h2>
+        <p>Toque numa culinária e o site inteiro muda de cor para combinar com ela.</p>
       </div>
 
-      <div class="banner-grid">
-        <button class="culture-card active" data-theme="mexico" aria-pressed="true" type="button">
-          <img src="https://images.unsplash.com/photo-1551504734-5ee1c4a1479b?w=900" alt="Tacos mexicanos" loading="lazy">
-          <span class="card-arrow">↗</span>
-          <div class="card-content">
-            <span class="card-tag">AMÉRICA DO NORTE</span>
-            <h3>México 🇲🇽</h3>
-            <p>Temperos intensos, cores vibrantes e sabores inesquecíveis.</p>
-          </div>
+      <div class="cartoes">
+        <button class="cartao" data-theme="mexico" aria-pressed="true" type="button">
+          <img src="https://images.unsplash.com/photo-1551504734-5ee1c4a1479b?w=900" alt="Tacos mexicanos num prato" loading="lazy">
+          <span class="selo" aria-hidden="true"><b>MX</b><small>7.436 km</small></span>
+          <span class="cartao-texto">
+            <span class="cartao-regiao">América do Norte</span>
+            <span class="cartao-nome">México</span>
+            <span class="cartao-desc">Temperos intensos, cores vibrantes e sabores inesquecíveis.</span>
+          </span>
         </button>
 
-        <button class="culture-card" data-theme="italia" aria-pressed="false" type="button">
-          <img src="https://images.unsplash.com/photo-1473093295043-cdd812d0e601?w=900" alt="Massa italiana" loading="lazy">
-          <span class="card-arrow">↗</span>
-          <div class="card-content">
-            <span class="card-tag">EUROPA</span>
-            <h3>Itália 🇮🇹</h3>
-            <p>Tradição, massas artesanais e o verdadeiro sabor italiano.</p>
-          </div>
+        <button class="cartao" data-theme="italia" aria-pressed="false" type="button">
+          <img src="https://images.unsplash.com/photo-1473093295043-cdd812d0e601?w=900" alt="Massa italiana com tomate e manjericão" loading="lazy">
+          <span class="selo" aria-hidden="true"><b>IT</b><small>8.988 km</small></span>
+          <span class="cartao-texto">
+            <span class="cartao-regiao">Europa</span>
+            <span class="cartao-nome">Itália</span>
+            <span class="cartao-desc">Tradição, massas artesanais e o verdadeiro sabor italiano.</span>
+          </span>
         </button>
 
-        <button class="culture-card" data-theme="japao" aria-pressed="false" type="button">
+        <button class="cartao" data-theme="japao" aria-pressed="false" type="button">
           <img src="https://images.unsplash.com/photo-1579871494447-9811cf80d66c?w=900" alt="Sushi japonês" loading="lazy">
-          <span class="card-arrow">↗</span>
-          <div class="card-content">
-            <span class="card-tag">ÁSIA</span>
-            <h3>Japão 🇯🇵</h3>
-            <p>Equilíbrio, delicadeza e uma experiência cheia de tradição.</p>
-          </div>
+          <span class="selo" aria-hidden="true"><b>JP</b><small>18.228 km</small></span>
+          <span class="cartao-texto">
+            <span class="cartao-regiao">Ásia</span>
+            <span class="cartao-nome">Japão</span>
+            <span class="cartao-desc">Equilíbrio, delicadeza e uma experiência cheia de tradição.</span>
+          </span>
         </button>
       </div>
     </section>
 
-    <section class="experience" id="sobre">
-      <div>
-        <div class="eyebrow">Muito além de comer</div>
-        <h2>Restaurantes e sabores<br>de todas as nacionalidades.</h2>
-        <p>
-          O Mesa Mundi conecta você a restaurantes de diferentes
-          culturas. Descubra lugares, conheça novas gastronomias
-          e encontre sua próxima experiência internacional.
-        </p>
-        <br>
-        <a href="app.html" class="primary-button">Começar minha experiência →</a>
+    <!-- COMO FUNCIONA: é uma sequência de verdade, por isso os números -->
+    <section class="como" id="como-funciona">
+      <div class="secao-cabeca">
+        <h2>Da vontade à mesa em três paradas</h2>
       </div>
-      <div class="experience-icon">🌍</div>
+
+      <ol class="paradas">
+        <li>
+          <span class="parada-num">1</span>
+          <h3>Escolha um país</h3>
+          <p>Navegue pelas culinárias e veja quais restaurantes de cada lugar existem perto de você.</p>
+        </li>
+        <li>
+          <span class="parada-num">2</span>
+          <h3>Conheça o restaurante</h3>
+          <p>Cardápio, horários, endereço e avaliações de quem já foi, tudo na mesma página.</p>
+        </li>
+        <li>
+          <span class="parada-num">3</span>
+          <h3>Reserve sua mesa</h3>
+          <p>Escolha o dia, o horário e quantas pessoas vão. O restaurante confirma pelo app.</p>
+        </li>
+      </ol>
+    </section>
+
+    <!-- DESTINOS: os países que já estão no banco -->
+    <section class="paises">
+      <div class="secao-cabeca">
+        <h2>Onde o Mesa Mundi já chega</h2>
+        <p>Distâncias em linha reta a partir de Belo Horizonte.</p>
+      </div>
+
+      <ul class="lista-paises">
+        <li><span class="selo-mini">VE</span><span class="pais-nome">Venezuela</span><span class="pais-cidade">Caracas</span><span class="pais-km">4.213 km</span></li>
+        <li><span class="selo-mini">MX</span><span class="pais-nome">México</span><span class="pais-cidade">Cidade do México</span><span class="pais-km">7.436 km</span></li>
+        <li><span class="selo-mini">IT</span><span class="pais-nome">Itália</span><span class="pais-cidade">Roma</span><span class="pais-km">8.988 km</span></li>
+        <li><span class="selo-mini">LB</span><span class="pais-nome">Líbano</span><span class="pais-cidade">Beirute</span><span class="pais-km">10.306 km</span></li>
+        <li><span class="selo-mini">SY</span><span class="pais-nome">Síria</span><span class="pais-cidade">Damasco</span><span class="pais-km">10.357 km</span></li>
+        <li><span class="selo-mini">KR</span><span class="pais-nome">Coreia do Sul</span><span class="pais-cidade">Seul</span><span class="pais-km">17.865 km</span></li>
+        <li><span class="selo-mini">JP</span><span class="pais-nome">Japão</span><span class="pais-cidade">Tóquio</span><span class="pais-km">18.228 km</span></li>
+      </ul>
+    </section>
+
+    <!-- PARA RESTAURANTES -->
+    <section class="restaurantes" id="restaurantes">
+      <div>
+        <h2>Tem um restaurante de comida estrangeira?</h2>
+        <p>
+          Cadastre seu restaurante no Mesa Mundi e apareça para quem está procurando
+          exatamente a comida do seu país. Depois do cadastro, a equipe do Mesa Mundi revisa e aprova o restaurante.
+        </p>
+      </div>
+      <a href="app.html" class="botao botao-claro">Cadastrar meu restaurante</a>
     </section>
 
   </main>
 
-  <footer>
-    <div class="footer-brand">mesa<span style="color:var(--detail)">mundi.</span></div>
-    <p>© <span id="year">2026</span> Mesa Mundi. Todos os direitos reservados.</p>
+  <footer class="rodape">
+    <a href="#inicio" class="logo">mesa<span>mundi.</span></a>
     <p>Feito para quem tem fome de conhecer o mundo.</p>
+    <p>© <span id="ano">2026</span> Mesa Mundi</p>
   </footer>
 
-  <script src="js/landing.js?v=20261112c"></script>
+  <script src="js/landing.js?v=20261112d"></script>
 </body>
 </html>
