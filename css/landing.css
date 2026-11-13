@@ -161,6 +161,23 @@ h1 {
   aspect-ratio: 120 / 47;
 }
 
+/* Saudação no idioma do país, em forma de carimbo */
+.saudacao {
+  position: absolute;
+  top: clamp(16px, 2.4vw, 28px);
+  right: clamp(18px, 3vw, 36px);
+  padding: 9px 15px;
+  border-radius: 12px;
+  border: 2px solid var(--detail);
+  outline: 1.5px dashed var(--detail);
+  outline-offset: 3px;
+  color: var(--text);
+  font: 800 clamp(14px, 1.5vw, 18px)/1 var(--titulo);
+  rotate: -6deg;
+  transition: border-color .7s ease, outline-color .7s ease;
+}
+[data-culture="japao"] .saudacao { writing-mode: vertical-rl; padding: 13px 9px; letter-spacing: .12em; rotate: 4deg; }
+
 .rota {
   position: absolute;
   left: clamp(18px, 3vw, 36px);

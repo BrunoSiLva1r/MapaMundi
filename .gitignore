@@ -1,2 +1,6 @@
 node_modules
 .env
+referencias/
+img/*
+!img/foto-mexico-molhos.jpg
+!img/foto-italia-pizza.jpg

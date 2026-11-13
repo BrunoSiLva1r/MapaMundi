@@ -209,6 +209,11 @@ function atualizarLegenda(nome) {
   document.getElementById('rota-destino').textContent = tema.city;
   document.getElementById('rota-km').textContent = formatoKm.format(tema.km);
   document.getElementById('rota-nota').textContent = tema.note;
+
+  // saudação no idioma do país, em forma de carimbo
+  const saudacao = document.getElementById('saudacao');
+  saudacao.textContent = tema.saudacao;
+  saudacao.lang = { mexico: 'es', italia: 'it', japao: 'ja' }[nome] || '';
 }
 
 // ---------- Troca de culinária ----------

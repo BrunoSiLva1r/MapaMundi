@@ -11,8 +11,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/landing.css?v=20261112f">
-  <script src="js/theme.js?v=20261112f"></script>
+  <link rel="stylesheet" href="css/landing.css?v=20261113a">
+  <script src="js/theme.js?v=20261113a"></script>
 </head>
 
 <body>
@@ -50,6 +50,7 @@
 
       <figure class="mapa" aria-labelledby="rota-legenda">
         <canvas id="mapa-canvas" aria-hidden="true"></canvas>
+        <span class="saudacao" id="saudacao" lang="es">¡Buen provecho!</span>
 
         <figcaption class="rota" id="rota-legenda" aria-live="polite">
           <span class="rota-trecho"><span id="rota-origem">Belo Horizonte</span> até <strong id="rota-destino">Cidade do México</strong></span>
@@ -74,7 +75,7 @@
 
       <div class="cartoes">
         <button class="cartao" data-theme="mexico" aria-pressed="true" type="button">
-          <img src="https://images.unsplash.com/photo-1551504734-5ee1c4a1479b?w=900" alt="Tacos mexicanos num prato" loading="lazy">
+          <img src="img/foto-mexico-molhos.jpg" alt="Guacamole, salsa roja e molhos mexicanos com nachos" loading="lazy" width="720" height="900">
           <span class="selo" aria-hidden="true"><b>MX</b><small>7.436 km</small></span>
           <span class="cartao-texto">
             <span class="cartao-regiao">América do Norte</span>
@@ -84,7 +85,7 @@
         </button>
 
         <button class="cartao" data-theme="italia" aria-pressed="false" type="button">
-          <img src="https://images.unsplash.com/photo-1473093295043-cdd812d0e601?w=900" alt="Massa italiana com tomate e manjericão" loading="lazy">
+          <img src="img/foto-italia-pizza.jpg" alt="Pizza margherita com manjericão sobre tábua de madeira" loading="lazy" width="504" height="900">
           <span class="selo" aria-hidden="true"><b>IT</b><small>8.988 km</small></span>
           <span class="cartao-texto">
             <span class="cartao-regiao">Europa</span>
@@ -168,6 +169,6 @@
     <p>© <span id="ano">2026</span> Mesa Mundi</p>
   </footer>
 
-  <script src="js/landing.js?v=20261112f"></script>
+  <script src="js/landing.js?v=20261113a"></script>
 </body>
 </html>
