@@ -139,7 +139,9 @@ svg.i { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-widt
   border-radius: 50%;
   border: 2px solid transparent;
   background: rgba(255, 255, 255, .14);
-  font-size: 19px;
+  font: 800 12px var(--serif);
+  letter-spacing: .04em;
+  color: var(--text);
   cursor: pointer;
   transition: transform .2s, border-color .2s;
 }
@@ -358,3 +360,94 @@ tr:hover td { background: var(--soft); }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
 }
+
+/* ---------- Cartão de restaurante ---------- */
+/* Capa com o padrão de pontos do mapa da landing, carimbo de passaporte e distância até BH */
+
+.rc { padding: 0; overflow: hidden; gap: 0; }
+
+.rcv {
+  position: relative;
+  height: 128px;
+  background-color: var(--primary);
+  background-image: radial-gradient(circle, color-mix(in srgb, var(--text) 32%, transparent) 1.5px, transparent 1.8px);
+  background-size: 12px 12px;
+  background-position: 6px 6px;
+  transition: background-color .7s ease;
+}
+.rcv.foto { background-image: none; }
+.rcv img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.rcv.foto::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to top, rgba(0, 0, 0, .55), transparent 60%); }
+
+.rcv .tg {
+  position: absolute; top: 14px; left: 14px; z-index: 1;
+  background: var(--sf);
+}
+
+.rkm {
+  position: absolute; left: 18px; bottom: 14px; z-index: 1;
+  display: flex; align-items: center; gap: 8px;
+  color: var(--text);
+  font: 700 13px var(--serif);
+  font-variant-numeric: tabular-nums;
+}
+/* mini rota: origem, trilha pontilhada e destino */
+.rkm i {
+  width: 30px; height: 8px; flex: none;
+  background:
+    radial-gradient(circle, currentColor 3px, transparent 3.5px) left center / 8px 8px no-repeat,
+    radial-gradient(circle, var(--detail) 3px, transparent 3.5px) right center / 8px 8px no-repeat,
+    radial-gradient(circle, currentColor 1px, transparent 1.4px) center / 5px 8px repeat-x;
+}
+
+.stamp {
+  --sc: var(--pr);
+  position: absolute; right: 18px; bottom: -30px; z-index: 2;
+  width: 76px; height: 76px;
+  border-radius: 50%;
+  display: grid; place-content: center; text-align: center;
+  background: var(--sf);
+  color: var(--sc);
+  border: 2.5px solid var(--sc);
+  outline: 1.5px dashed var(--sc);
+  outline-offset: -8px;
+  rotate: -10deg;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, .12);
+}
+.stamp b { font: 800 21px/1 var(--serif); letter-spacing: .03em; }
+.stamp small { font-size: 8.5px; font-weight: 700; margin-top: 3px; max-width: 54px; line-height: 1.15; }
+
+.rc { display: flex; flex-direction: column; }
+.rb { flex: 1; display: flex; flex-direction: column; gap: 10px; padding: 18px 22px 22px; }
+.rb > .dh { align-self: flex-start; margin: 0; }
+.rb h3 { margin: 0; padding-right: 76px; font: 800 20px/1.2 var(--serif); letter-spacing: -0.01em; color: var(--ink); }
+.rb p { margin: 0; }
+
+.rmeta { display: flex; flex-wrap: wrap; gap: 6px; }
+.rmeta span {
+  font-size: 12px; font-weight: 600;
+  padding: 3px 10px; border-radius: 99px;
+  background: var(--soft); color: var(--pd);
+}
+.rmeta span + span { background: transparent; box-shadow: inset 0 0 0 1px var(--bd); color: var(--mut); }
+
+.rb .stars b { color: var(--ink); margin-left: 2px; }
+
+/* pratos como num cardápio: nome ······ preço */
+.menu { list-style: none; margin: 2px 0 0; padding: 12px 0 0; border-top: 1px dashed var(--bd); display: grid; gap: 7px; }
+.menu li { display: flex; align-items: baseline; gap: 6px; font-size: 13.5px; }
+.menu li span { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.menu li i { flex: 1; min-width: 16px; border-bottom: 2px dotted var(--bd); transform: translateY(-4px); }
+.menu li b { font-weight: 700; font-variant-numeric: tabular-nums; white-space: nowrap; color: var(--pd); }
+
+.rb .row { margin-top: auto; padding-top: 6px; }
+.vazio { grid-column: 1 / -1; padding: 28px 0; }
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .stamp { box-shadow: 0 6px 18px rgba(0, 0, 0, .4); }
+}
+/* no modo escuro, as cores das bandeiras ficam mais claras para continuar legíveis */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .stamp { color: color-mix(in srgb, var(--sc) 55%, #fff); border-color: color-mix(in srgb, var(--sc) 55%, #fff); outline-color: color-mix(in srgb, var(--sc) 55%, #fff); }
+}
+:root[data-theme="dark"] .stamp { color: color-mix(in srgb, var(--sc) 55%, #fff); border-color: color-mix(in srgb, var(--sc) 55%, #fff); outline-color: color-mix(in srgb, var(--sc) 55%, #fff); box-shadow: 0 6px 18px rgba(0, 0, 0, .4); }
