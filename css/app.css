@@ -451,3 +451,139 @@ tr:hover td { background: var(--soft); }
   :root:not([data-theme="light"]) .stamp { color: color-mix(in srgb, var(--sc) 55%, #fff); border-color: color-mix(in srgb, var(--sc) 55%, #fff); outline-color: color-mix(in srgb, var(--sc) 55%, #fff); }
 }
 :root[data-theme="dark"] .stamp { color: color-mix(in srgb, var(--sc) 55%, #fff); border-color: color-mix(in srgb, var(--sc) 55%, #fff); outline-color: color-mix(in srgb, var(--sc) 55%, #fff); box-shadow: 0 6px 18px rgba(0, 0, 0, .4); }
+
+/* ---------- Vitrine da tela de login ---------- */
+/* Lugar (foto grande), pessoas (cartão), comida (círculo) e carimbo do país escolhido */
+
+.vitrine { display: none; }
+
+.out { grid-template-columns: minmax(380px, .9fr) 1.1fr; }
+.out main { min-height: 100vh; }
+
+.out .vitrine {
+  display: flex;
+  flex-direction: column;
+  gap: 64px;
+  min-height: 100vh;
+  padding: 40px 48px 40px 40px;
+  background: var(--surface);
+  color: var(--text);
+  overflow: hidden;
+  transition: background .7s ease;
+}
+
+.vt-colagem { position: relative; flex: 1; min-height: 380px; }
+
+.vt-lugar {
+  position: absolute; inset: 0;
+  margin: 0;
+  border-radius: 28px;
+  overflow: hidden;
+  background: var(--primary);
+}
+.vt-lugar img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.vt-lugar figcaption {
+  position: absolute; left: 18px; top: 18px;
+  padding: 6px 14px;
+  border-radius: 99px;
+  background: rgba(0, 0, 0, .5);
+  backdrop-filter: blur(6px);
+  color: #fff;
+  font-size: 13px; font-weight: 600;
+}
+
+.vt-pessoas {
+  position: absolute; left: -12px; bottom: -44px;
+  width: clamp(150px, 30%, 250px);
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  border-radius: 20px;
+  border: 6px solid var(--text);
+  rotate: -4deg;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, .3);
+}
+
+.vt-prato {
+  position: absolute; right: -20px; bottom: 36px;
+  width: clamp(120px, 24%, 190px);
+  aspect-ratio: 1;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 6px solid var(--text);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, .3);
+}
+
+.vt-selo { right: 36px; top: -20px; bottom: auto; width: 92px; height: 92px; }
+.vt-selo b { font-size: 26px; }
+.vt-selo small { font-size: 9.5px; }
+
+.vt-texto { display: grid; gap: 10px; padding-left: clamp(150px, 30%, 250px); }
+.vt-convite { margin: 0; font: 800 clamp(24px, 2.4vw, 34px)/1.12 var(--serif); letter-spacing: -0.02em; text-wrap: balance; }
+.vt-rota { margin: 0; display: flex; align-items: center; gap: 10px; color: color-mix(in srgb, var(--text) 80%, transparent); }
+.vt-rota span { color: var(--text); font: 800 16px var(--serif); font-variant-numeric: tabular-nums; }
+.vt-rota i {
+  width: 34px; height: 8px; flex: none;
+  background:
+    radial-gradient(circle, currentColor 3px, transparent 3.5px) left center / 8px 8px no-repeat,
+    radial-gradient(circle, var(--detail) 3px, transparent 3.5px) right center / 8px 8px no-repeat,
+    radial-gradient(circle, currentColor 1px, transparent 1.4px) center / 5px 8px repeat-x;
+}
+
+.vt-temas { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
+.vt-temas button {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 5px 14px 5px 5px;
+  border-radius: 99px;
+  border: 1.5px solid color-mix(in srgb, var(--text) 30%, transparent);
+  background: transparent;
+  color: var(--text);
+  font: 600 13px var(--sans);
+  cursor: pointer;
+  transition: background .3s, color .3s, border-color .3s;
+}
+.vt-temas button span {
+  width: 28px; height: 28px; border-radius: 50%;
+  display: grid; place-items: center;
+  border: 1.5px dashed currentColor;
+  font: 800 10px var(--serif);
+}
+.vt-temas button:hover { border-color: var(--text); }
+.vt-temas button[aria-pressed="true"] { background: var(--text); color: var(--primary); border-color: var(--text); }
+.vt-temas button:focus-visible { outline: 2px solid var(--text); outline-offset: 2px; }
+
+@media (max-width: 1100px) {
+  .out .vitrine { padding: 32px; gap: 56px; }
+  .vt-prato { display: none; }
+}
+
+@media (max-width: 860px) {
+  .out { grid-template-columns: 1fr; }
+  .out main { min-height: 0; order: 2; }
+  .out .vitrine { order: 1; min-height: 0; padding: 16px 16px 20px; gap: 18px; }
+  .vt-colagem { flex: none; height: 190px; min-height: 0; }
+  .vt-pessoas, .vt-prato, .vt-rota { display: none; }
+  .vt-selo { width: 70px; height: 70px; right: 16px; top: auto; bottom: -16px; }
+  .vt-selo b { font-size: 19px; }
+  .vt-texto { padding-left: 0; }
+  .vt-convite { font-size: 22px; }
+}
+
+/* Logo no canto da tela de login (volta para o site) */
+.app { position: relative; }
+.out-logo { display: none; }
+.out .out-logo {
+  display: block;
+  position: absolute; top: 32px; left: 40px; z-index: 5;
+  font: 800 25px/1 var(--serif);
+  letter-spacing: -1.2px;
+  color: var(--text);
+  text-decoration: none;
+}
+.out .out-logo span { color: var(--detail); transition: color .7s ease; }
+.out .out-logo:focus-visible { outline: 2px solid var(--text); outline-offset: 4px; border-radius: 4px; }
+
+@media (max-width: 860px) {
+  .out { grid-template-rows: auto 1fr; }
+  .out main { place-items: start center; padding-top: 8px; }
+  .out .out-logo { display: none; }
+}

@@ -8,8 +8,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/app.css?v=20261112e">
-  <script src="js/theme.js?v=20261112e"></script>
+  <link rel="stylesheet" href="css/app.css?v=20261112f">
+  <script src="js/theme.js?v=20261112f"></script>
 </head>
 <body>
 <div class="app">
@@ -25,17 +25,61 @@
       </div>
     </div>
   </aside>
+  <a class="out-logo" href="index.html" aria-label="Voltar para o site do Mesa Mundi">mesa<span>mundi.</span></a>
   <main id="v"></main>
+
+  <!-- Vitrine da tela de login: lugar, pessoas e comida do tema escolhido -->
+  <section class="vitrine" aria-label="Destino do tema escolhido">
+    <div class="vt-colagem">
+      <figure class="vt-lugar">
+        <img id="vt-lugar" src="https://images.unsplash.com/photo-1585464231875-d9ef1f5ad396?w=1200&q=75" alt="">
+        <figcaption id="vt-lugar-nome">Zócalo, Cidade do México</figcaption>
+      </figure>
+      <img class="vt-pessoas" id="vt-pessoas" src="https://images.unsplash.com/photo-1518105779142-d975f22f1b0a?w=600&q=70" alt="Pessoas caminhando por uma rua de casas coloridas">
+      <img class="vt-prato" id="vt-prato" src="https://images.unsplash.com/photo-1551504734-5ee1c4a1479b?w=500" alt="Comida típica do México">
+      <span class="stamp vt-selo" id="vt-selo" aria-hidden="true"><b>MX</b><small>México</small></span>
+    </div>
+
+    <div class="vt-texto">
+      <p class="vt-convite" id="vt-convite">Hoje o jantar é na Cidade do México.</p>
+      <p class="vt-rota"><i aria-hidden="true"></i><span id="vt-km">7.436 km</span> de Belo Horizonte. Sem sair da cidade.</p>
+      <div class="vt-temas" role="group" aria-label="Escolha o destino">
+        <button type="button" data-culture="mexico"><span>MX</span>México</button>
+        <button type="button" data-culture="italia"><span>IT</span>Itália</button>
+        <button type="button" data-culture="japao"><span>JP</span>Japão</button>
+      </div>
+    </div>
+  </section>
 </div>
 <div id="m"></div><div id="toast" role="status"></div>
 <script>
   (function () {
-    const buttons = document.querySelectorAll('.culture-switch button');
-    const mark = () => buttons.forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.culture === MesaTheme.current())));
-    buttons.forEach((b) => b.addEventListener('click', () => { MesaTheme.apply(b.dataset.culture, true); mark(); }));
-    mark();
+    const buttons = document.querySelectorAll('[data-culture]');
+    const $id = (i) => document.getElementById(i);
+    const tamanho = (url, w, q) => `${url}?w=${w}&q=${q}`;
+
+    function mostrar(nome) {
+      const t = MesaTheme.themes[nome];
+      buttons.forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.culture === nome)));
+      $id('vt-lugar').src = tamanho(t.lugar.img, 1200, 75);
+      $id('vt-lugar-nome').textContent = t.lugar.nome;
+      $id('vt-pessoas').src = tamanho(t.pessoas.img, 600, 70);
+      $id('vt-pessoas').alt = t.pessoas.alt;
+      $id('vt-prato').src = t.image;
+      $id('vt-prato').alt = 'Comida típica: ' + t.name;
+      $id('vt-selo').innerHTML = `<b>${t.code}</b><small>${t.name}</small>`;
+      $id('vt-selo').style.setProperty('--sc', t.primary);
+      $id('vt-convite').textContent = t.convite;
+      $id('vt-km').textContent = t.km.toLocaleString('pt-BR') + ' km';
+    }
+
+    buttons.forEach((b) => b.addEventListener('click', () => {
+      MesaTheme.apply(b.dataset.culture, true);
+      mostrar(b.dataset.culture);
+    }));
+    mostrar(MesaTheme.current());
   })();
 </script>
-<script src="js/app.js?v=20261112e"></script>
+<script src="js/app.js?v=20261112f"></script>
 </body>
 </html>
